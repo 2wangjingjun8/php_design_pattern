@@ -1,0 +1,41 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>切换风格</title>
+</head>
+<style>
+#content,#ad,#study{
+	width: 498px;
+	height: 150px;
+	border:1px solid #333;
+	margin-top: 10px;
+}
+
+</style>
+<script>
+function t(){
+	var sel = document.getElementById("select");
+	// alert(sel.value);
+	if (sel.value == "male") {
+		document.getElementById("content").style.backgroundColor = "blue";
+		document.getElementById("ad").innerHTML = "汽车";
+	}else if (sel.value == "female") {
+		document.getElementById("content").style.backgroundColor = "pink";
+		document.getElementById("ad").innerHTML = "减肥";
+	}else{
+		document.getElementById("content").style.backgroundColor = "";
+		document.getElementById("ad").innerHTML = "广告区";
+	}
+}
+</script>
+<body>
+	<select name="" id="select" onchange="t()">
+		<option value="">请选择风格</option>
+		<option value="male">男式风格</option>
+		<option value="female">女士风格</option>
+	</select>
+	<div id="content">内容区</div>
+	<div id="ad">广告区</div>
+	<div id="study">学习区</div>
+</body>
+</html>

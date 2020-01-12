@@ -1,0 +1,86 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>切换风格</title>
+</head>
+<style>
+#content,#ad,#study{
+	width: 498px;
+	height: 150px;
+	border:1px solid #333;
+	margin-top: 10px;
+}
+
+</style>
+<body>
+	<select name="" id="select">
+		<option value="">请选择风格</option>
+		<option value="male">男式风格</option>
+		<option value="female">女士风格</option>
+	</select>
+	<button onclick="t1();">观察学习区</button>
+	<button onclick="t2();">不观察学习区</button>
+	<div id="content">内容区</div>
+	<div id="ad">广告区</div>
+	<div id="study">学习区</div>
+</body>
+
+<script>
+	var sel = document.getElementById("select");
+	// console.log(sel)
+	sel.objs = {}
+	sel.attach = function(key,obj){
+		this.objs[key] = obj;
+	}
+	sel.delAttach = function(key){
+		delete this.objs[key];
+	}
+
+	sel.onchange = function(){
+		for(var key in this.objs){
+			this.objs[key].update(this)
+		}
+	}
+
+	// 客户端
+	var content = document.getElementById('content')
+	var ad = document.getElementById('ad')
+	var study = document.getElementById('study')
+	content.update = function(objs){
+		if (objs.value == 'male') {
+			content.style.backgroundColor = "blue";
+		}else if (objs.value == 'female') {
+			content.style.backgroundColor = "pink";
+		}else{
+			content.style.backgroundColor = "";
+		}
+	}
+	ad.update = function(objs){
+		if (objs.value == 'male') {
+			ad.innerHTML = "汽车";
+		}else if (objs.value == 'female') {
+			ad.innerHTML = "减肥";
+		}else{
+			ad.innerHTML = "广告区";
+		}
+	}
+	study.update = function(objs){
+		if (objs.value == 'male') {
+			study.innerHTML = "学习编程";
+		}else if (objs.value == 'female') {
+			study.innerHTML = "学习美工";
+		}else{
+			study.innerHTML = "学习区";
+		}
+	}
+	sel.attach('content',content);
+	sel.attach('ad',ad);
+	sel.attach('study',study);
+	function t1(){
+		sel.attach('study',study)
+	}
+	function t2(){
+		sel.delAttach('study')
+	}
+</script>
+</html>
